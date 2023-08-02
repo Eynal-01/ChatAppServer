@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="WPF_ServerTcp.Views.MessageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_ServerTcp.Views"
+             mc:Ignorable="d" 
+             MaxWidth="200">
+    <Border CornerRadius="15" Padding="4"  BorderThickness="2" >
+        <Border.Background>
+            <LinearGradientBrush>
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.1" Color="DeepSkyBlue"></GradientStop>
+                    <GradientStop Offset="1" Color="DarkSlateBlue"></GradientStop>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Border.Background>
+        <TextBlock FontSize="20" Foreground="White" TextWrapping="Wrap" Text="{Binding ClientMessage}"></TextBlock>
+    </Border>
+</UserControl>

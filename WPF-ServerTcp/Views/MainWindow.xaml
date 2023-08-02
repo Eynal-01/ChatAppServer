@@ -1,0 +1,56 @@
+﻿<Window x:Class="WPF_ServerTcp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_ServerTcp" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock VerticalAlignment="Top" Height="50" Width="420" FontSize="20" Foreground="DodgerBlue" >Double click on user for open message window</TextBlock>
+        <Canvas Margin="0,50,0,0" Width="380" HorizontalAlignment="Left">
+            <TextBlock FontSize="30" Width="170" Canvas.Left="115">Online users</TextBlock>
+            <ListBox Name="listBox" FontSize="25" ItemsSource="{Binding TcpClients}" Canvas.Top="50" Width="380" BorderThickness="0"
+                         SelectedItem="{Binding SelectedClient, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Margin="5" Width="400"
+                                              Foreground="Green" Text="{Binding Name}" ></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick" >
+                        <i:InvokeCommandAction Command="{Binding SelectedClientCommand}">
+
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+        </Canvas>
+        <Canvas Margin="0,50,0,0" Width="380" HorizontalAlignment="Right">
+            <TextBlock FontSize="30" Width="170" Canvas.Left="115">Offline users</TextBlock>
+            <ListBox FontSize="25" ItemsSource="{Binding OfflineTcpClients}" Canvas.Top="50" Width="380" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Margin="5" Width="400" Text="{Binding Name}" Foreground="Red" ></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Canvas>
+    </Grid>
+</Window>
